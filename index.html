@@ -11,6 +11,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Google AdSense Master Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4321543724878495" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-4321543724878495">
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -37,7 +41,6 @@
         }
     </script>
     <style>
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -58,10 +61,8 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .ad-placeholder-pattern {
-            background-color: #131b2e;
-            background-image: radial-gradient(#1f2937 1px, transparent 1px);
-            background-size: 16px 16px;
+        .adsense-container {
+            background-color: rgba(31, 41, 55, 0.3);
         }
     </style>
 </head>
@@ -75,7 +76,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Brand / Logo -->
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="forceGlobalRefresh()">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
                         <i class="fa-solid font-bold fa-display text-xl text-white"></i>
                     </div>
@@ -89,7 +90,6 @@
 
                 <!-- Center: Stats & Auto-Refresh Progress -->
                 <div class="hidden lg:flex items-center gap-6">
-                    <!-- Stats Badge -->
                     <div class="flex items-center gap-3 bg-gray-900/80 px-3 py-1.5 rounded-lg border border-gray-800 text-xs">
                         <div>
                             <span class="text-gray-400">Apps:</span>
@@ -102,9 +102,8 @@
                         </div>
                     </div>
 
-                    <!-- Auto Refresh Timer Indicator -->
                     <div class="flex items-center gap-3 bg-gray-900/80 px-3 py-1.5 rounded-lg border border-gray-800 text-xs min-w-[200px]">
-                        <i class="fa-solid fa-rotate text-brand-500 animate-spin-slow"></i>
+                        <i class="fa-solid fa-rotate text-brand-500 animate-spin"></i>
                         <div class="flex-1">
                             <div class="flex justify-between mb-1">
                                 <span class="text-gray-400">Auto Refresh</span>
@@ -117,7 +116,7 @@
                     </div>
                 </div>
 
-                <!-- Navigation Controls & Add Button -->
+                <!-- Navigation Controls -->
                 <div class="flex items-center gap-3">
                     <button onclick="forceGlobalRefresh()" class="p-2.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors" title="Force Refresh All Apps">
                         <i class="fa-solid fa-arrows-rotate"></i>
@@ -130,40 +129,29 @@
             </div>
         </div>
 
-        <!-- Progress bar for mobile refresh -->
         <div class="lg:hidden w-full bg-gray-800 h-1">
             <div id="timer-bar-mobile" class="bg-brand-500 h-full w-full transition-all duration-1000 ease-linear"></div>
         </div>
     </header>
 
-    <!-- AdSense Top Leaderboard Banner Slot (728x90 compliant slot) -->
+    <!-- AD UNIT #1: TOP LEADERBOARD BANNER -->
     <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-4">
-        <div class="ad-placeholder-pattern border border-dashed border-gray-700/60 rounded-xl p-3 flex flex-col items-center justify-center min-h-[90px] relative overflow-hidden group">
-            <span class="absolute top-1 right-2 text-[10px] uppercase tracking-wider text-gray-500 font-medium">Advertisement - Google AdSense</span>
-            
-            <!-- Google AdSense Container Simulation -->
+        <div class="adsense-container border border-gray-800 rounded-xl p-3 flex flex-col items-center justify-center min-h-[90px] relative overflow-hidden">
             <ins class="adsbygoogle"
                  style="display:block; width:100%; max-width:728px; height:90px;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-client="ca-pub-4321543724878495"
                  data-ad-slot="1234567890"
                  data-ad-format="horizontal"
                  data-full-width-responsive="true"></ins>
-            
-            <!-- Ad Fallback UI (Shows when actual AdSense script isn't loaded) -->
-            <div class="flex items-center gap-4 text-gray-400 text-sm my-auto">
-                <i class="fa-solid fa-rectangle-ad text-brand-500 text-2xl"></i>
-                <div class="text-center sm:text-left">
-                    <p class="font-medium text-gray-300">Reserved Top Leaderboard Ad Slot (728x90)</p>
-                    <p class="text-xs text-gray-500">Google AdSense responsive banner unit configured and compliant.</p>
-                </div>
-            </div>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     </div>
 
     <!-- Main Container -->
     <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
         
-        <!-- Quick Dashboard Bar -->
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 bg-darkcard/50 border border-gray-800 p-4 rounded-xl">
             <div>
                 <h1 class="text-xl font-bold text-white flex items-center gap-2">
@@ -178,17 +166,14 @@
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-500 text-sm"></i>
                     <input type="text" id="search-input" oninput="filterApps()" placeholder="Search monitors..." class="w-full bg-gray-900 border border-gray-700/70 text-gray-200 text-xs rounded-lg pl-9 pr-3 py-2 focus:outline-none focus:border-brand-500">
                 </div>
-                <button onclick="layoutToggle()" id="layout-toggle-btn" class="bg-gray-900 border border-gray-700/70 hover:bg-gray-800 text-gray-300 p-2 rounded-lg text-xs" title="Toggle Grid Columns">
-                    <i class="fa-solid fa-table-cells-large"></i>
-                </button>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <!-- App Stream Grid (Takes 3 columns on large screens) -->
+            <!-- App Stream Grid -->
             <div class="lg:col-span-3">
                 <div id="apps-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Dynamic App Cards Rendered Here -->
+                    <!-- Dynamic App Cards -->
                 </div>
 
                 <!-- Empty State -->
@@ -204,23 +189,18 @@
                 </div>
             </div>
 
-            <!-- Sidebar Column: Ads & AdSense Policy Compliance Widgets -->
-            <aside class="lg:col-span-1 space-x-0 space-y-6">
+            <!-- Sidebar Column -->
+            <aside class="lg:col-span-1 space-y-6">
                 
-                <!-- Ad Box 1: Medium Rectangle (300x250) -->
-                <div class="ad-placeholder-pattern border border-dashed border-gray-700/60 rounded-xl p-3 flex flex-col items-center justify-center min-h-[260px] relative overflow-hidden">
-                    <span class="absolute top-1 right-2 text-[10px] uppercase tracking-wider text-gray-500 font-medium">Advertisement</span>
-                    
+                <!-- Ad Box 1: Medium Rectangle -->
+                <div class="adsense-container border border-gray-800 rounded-xl p-3 flex flex-col items-center justify-center min-h-[260px] relative overflow-hidden">
                     <ins class="adsbygoogle"
                          style="display:inline-block;width:300px;height:250px"
-                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-client="ca-pub-4321543724878495"
                          data-ad-slot="9876543210"></ins>
-
-                    <div class="flex flex-col items-center text-center text-gray-400 text-xs p-4 my-auto">
-                        <i class="fa-solid fa-bullhorn text-brand-500 text-3xl mb-2"></i>
-                        <p class="font-semibold text-gray-300 mb-1">Google AdSense Reserved</p>
-                        <p class="text-[11px] text-gray-500">Medium Rectangle (300x250)<br>Standard Display Banner</p>
-                    </div>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
 
                 <!-- Info / Help Card -->
@@ -235,29 +215,24 @@
                     </ul>
                 </div>
 
-                <!-- Ad Box 2: Vertical Responsive / Skyscraper Slot -->
-                <div class="ad-placeholder-pattern border border-dashed border-gray-700/60 rounded-xl p-3 flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden">
-                    <span class="absolute top-1 right-2 text-[10px] uppercase tracking-wider text-gray-500 font-medium">Advertisement</span>
-                    
+                <!-- Ad Box 2: Vertical Responsive Slot -->
+                <div class="adsense-container border border-gray-800 rounded-xl p-3 flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden">
                     <ins class="adsbygoogle"
                          style="display:block"
-                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-client="ca-pub-4321543724878495"
                          data-ad-slot="5432167890"
                          data-ad-format="auto"
                          data-full-width-responsive="true"></ins>
-
-                    <div class="flex flex-col items-center text-center text-gray-400 text-xs p-4 my-auto">
-                        <i class="fa-solid fa-rectangle-ad text-brand-500 text-3xl mb-2"></i>
-                        <p class="font-semibold text-gray-300 mb-1">Responsive Ad Placement</p>
-                        <p class="text-[11px] text-gray-500">High-viewability sidebar slot for Google AdSense dynamic ads.</p>
-                    </div>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
 
             </aside>
         </div>
     </main>
 
-    <!-- Footer with AdSense Policy Links & Dynamic Modal Triggers -->
+    <!-- Footer -->
     <footer class="bg-darkcard border-t border-gray-800 mt-12 py-8 text-xs text-gray-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-gray-800/80 pb-6">
@@ -274,15 +249,15 @@
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 text-gray-500 text-[11px]">
-                <p>&copy; 2026 AppStream Monitor. All rights reserved. Compliant with Google AdSense Publisher Policies.</p>
-                <p>Designed for developers, system administrators & multi-app webmasters.</p>
+                <p>&copy; 2026 AppStream Monitor. All rights reserved.</p>
+                <p>Designed for developers, system administrators & webmasters.</p>
             </div>
         </div>
     </footer>
 
     <!-- ADD STREAM MODAL -->
     <div id="add-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-        <div class="bg-darkcard border border-gray-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl transition-all scale-95 opacity-0 transform" id="add-modal-content">
+        <div class="bg-darkcard border border-gray-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
             <div class="flex items-center justify-between p-5 border-b border-gray-800">
                 <h3 class="text-base font-semibold text-white flex items-center gap-2">
                     <i class="fa-solid fa-plus-circle text-brand-500"></i> Add New App Monitor
@@ -297,7 +272,6 @@
                 <div>
                     <label class="block text-xs font-medium text-gray-300 mb-1">App Stream Web URL (HTTP / HTTPS)</label>
                     <input type="url" id="input-url" required placeholder="https://example.com" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
-                    <p class="text-[11px] text-gray-500 mt-1">Make sure the destination site permits embedding inside an iframe.</p>
                 </div>
                 <div class="flex items-center justify-end gap-3 pt-3 border-t border-gray-800">
                     <button type="button" onclick="closeAddModal()" class="px-4 py-2 text-xs font-medium text-gray-400 hover:text-white rounded-lg">Cancel</button>
@@ -307,50 +281,14 @@
         </div>
     </div>
 
-    <!-- EDIT URL MODAL -->
-    <div id="edit-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-        <div class="bg-darkcard border border-gray-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
-            <div class="flex items-center justify-between p-5 border-b border-gray-800">
-                <h3 class="text-base font-semibold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-pen-to-square text-brand-500"></i> Edit App Stream Link
-                </h3>
-                <button onclick="closeEditModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-            <form onsubmit="handleEditApp(event)" class="p-5 space-y-4">
-                <input type="hidden" id="edit-app-id">
-                <div>
-                    <label class="block text-xs font-medium text-gray-300 mb-1">App Name</label>
-                    <input type="text" id="edit-title" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-gray-300 mb-1">Monitored Web URL</label>
-                    <input type="url" id="edit-url" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
-                </div>
-                <div class="flex items-center justify-end gap-3 pt-3 border-t border-gray-800">
-                    <button type="button" onclick="closeEditModal()" class="px-4 py-2 text-xs font-medium text-gray-400 hover:text-white rounded-lg">Cancel</button>
-                    <button type="submit" class="bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold px-4 py-2 rounded-lg">Save Changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- ADSENSE & LEGAL POLICY PAGES MODAL -->
+    <!-- POLICY MODAL -->
     <div id="policy-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/75 backdrop-blur-md p-4">
         <div class="bg-darkcard border border-gray-800 rounded-2xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
-            <!-- Modal Header -->
             <div class="flex items-center justify-between p-5 border-b border-gray-800">
-                <h3 id="policy-modal-title" class="text-lg font-bold text-white flex items-center gap-2">
-                    <!-- Title injected dynamically -->
-                </h3>
+                <h3 id="policy-modal-title" class="text-lg font-bold text-white flex items-center gap-2"></h3>
                 <button onclick="closePolicyModal()" class="text-gray-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            
-            <!-- Modal Body -->
-            <div id="policy-modal-content" class="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm text-gray-300 leading-relaxed">
-                <!-- Legal Content loaded dynamically -->
-            </div>
-
-            <!-- Modal Footer -->
+            <div id="policy-modal-content" class="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm text-gray-300 leading-relaxed"></div>
             <div class="p-4 border-t border-gray-800 flex justify-end">
                 <button onclick="closePolicyModal()" class="bg-gray-800 hover:bg-gray-700 text-white text-xs px-4 py-2 rounded-lg font-medium">Close</button>
             </div>
@@ -362,12 +300,8 @@
         <div class="flex items-center justify-between bg-darkcard px-4 py-3 border-b border-gray-800">
             <div class="flex items-center gap-3">
                 <span id="fullscreen-title" class="font-bold text-white text-sm">App Title</span>
-                <span id="fullscreen-url" class="text-xs text-gray-400 font-mono hidden sm:inline">https://...</span>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="refreshFullscreenIframe()" class="text-gray-300 hover:text-white text-xs bg-gray-800 px-3 py-1.5 rounded-lg">
-                    <i class="fa-solid fa-rotate mr-1"></i> Refresh
-                </button>
                 <button onclick="closeFullscreenModal()" class="text-gray-300 hover:text-white text-xs bg-red-600/80 hover:bg-red-600 px-3 py-1.5 rounded-lg">
                     <i class="fa-solid fa-xmark mr-1"></i> Exit Fullscreen
                 </button>
@@ -380,49 +314,27 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Default initial streams to populate the dashboard instantly
         const INITIAL_APPS = [
             { id: '1', title: 'Wikipedia Tech Dashboard', url: 'https://en.m.wikipedia.org/wiki/Main_Page' },
             { id: '2', title: 'OpenStreetMap Live View', url: 'https://www.openstreetmap.org/export/embed.html' },
-            { id: '3', title: 'Archive.org Digital Library', url: 'https://archive.org' },
-            { id: '4', title: 'W3Schools Code Playground', url: 'https://www.w3schools.com' }
+            { id: '3', title: 'Archive.org Digital Library', url: 'https://archive.org' }
         ];
 
-        const MAX_APPS = 50;
         const REFRESH_INTERVAL_SECONDS = 60;
-        
         let apps = [];
         let timerSeconds = REFRESH_INTERVAL_SECONDS;
         let timerInterval = null;
-        let isThreeColumn = false;
 
-        // Initialize Application
         window.addEventListener('DOMContentLoaded', () => {
             loadAppsFromStorage();
             renderAppGrid();
             startAutoRefreshTimer();
-            initializeAdSense();
         });
 
-        // Initialize Google AdSense script dynamically
-        function initializeAdSense() {
-            try {
-                // Safely attempt to trigger AdSense push if library exists
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-            } catch (e) {
-                // AdSense placeholder fallback active
-            }
-        }
-
-        // Local Storage Handling
         function loadAppsFromStorage() {
             const stored = localStorage.getItem('appstream_monitors');
             if (stored) {
-                try {
-                    apps = JSON.parse(stored);
-                } catch(e) {
-                    apps = [...INITIAL_APPS];
-                }
+                try { apps = JSON.parse(stored); } catch(e) { apps = [...INITIAL_APPS]; }
             } else {
                 apps = [...INITIAL_APPS];
             }
@@ -439,15 +351,11 @@
             document.getElementById('app-count-badge').innerText = `${apps.length} Apps`;
         }
 
-        // Timer Logic for 60-Second Refresh Engine
         function startAutoRefreshTimer() {
             if (timerInterval) clearInterval(timerInterval);
             timerSeconds = REFRESH_INTERVAL_SECONDS;
-            
             timerInterval = setInterval(() => {
                 timerSeconds--;
-                
-                // Update timer UI text & bar progress
                 document.getElementById('timer-text').innerText = `${timerSeconds}s`;
                 const percentage = (timerSeconds / REFRESH_INTERVAL_SECONDS) * 100;
                 document.getElementById('timer-bar').style.width = `${percentage}%`;
@@ -460,56 +368,26 @@
             }, 1000);
         }
 
-        // Global Refresh Function
         function forceGlobalRefresh() {
-            showToast('Refreshing all live stream instances...', 'info');
-            apps.forEach(app => {
-                refreshSingleIframe(app.id);
-            });
+            apps.forEach(app => refreshSingleIframe(app.id));
             timerSeconds = REFRESH_INTERVAL_SECONDS;
-            document.getElementById('timer-bar').style.width = '100%';
-            document.getElementById('timer-bar-mobile').style.width = '100%';
         }
 
-        // Single Stream Refresh
         function refreshSingleIframe(id) {
             const iframe = document.getElementById(`iframe-${id}`);
-            const loader = document.getElementById(`loader-${id}`);
-            const statusLight = document.getElementById(`status-${id}`);
-
             if (iframe) {
-                if (loader) loader.classList.remove('hidden');
-                if (statusLight) {
-                    statusLight.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
-                }
-                
-                // Refresh URL
-                const currentSrc = iframe.src;
+                const src = iframe.src;
                 iframe.src = 'about:blank';
-                setTimeout(() => {
-                    iframe.src = currentSrc;
-                }, 100);
+                setTimeout(() => { iframe.src = src; }, 100);
             }
         }
 
-        function handleIframeLoad(id) {
-            const loader = document.getElementById(`loader-${id}`);
-            const statusLight = document.getElementById(`status-${id}`);
-            
-            if (loader) loader.classList.add('hidden');
-            if (statusLight) {
-                statusLight.className = "w-2 h-2 rounded-full bg-emerald-500";
-            }
-        }
-
-        // Render App Stream Cards
         function renderAppGrid(filteredApps = null) {
             const grid = document.getElementById('apps-grid');
             const emptyState = document.getElementById('empty-state');
             const displayList = filteredApps || apps;
 
             grid.innerHTML = '';
-
             if (displayList.length === 0) {
                 emptyState.classList.remove('hidden');
                 emptyState.classList.add('flex');
@@ -521,214 +399,49 @@
             displayList.forEach((app) => {
                 const card = document.createElement('div');
                 card.className = "bg-darkcard border border-gray-800 rounded-xl overflow-hidden flex flex-col shadow-lg transition-all duration-200 hover:border-gray-700";
-                card.id = `card-${app.id}`;
-
                 card.innerHTML = `
-                    <!-- Card Header -->
                     <div class="px-4 py-3 bg-gray-900/90 border-b border-gray-800 flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2.5 overflow-hidden">
-                            <span id="status-${app.id}" class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" title="Status: Active Live Stream"></span>
-                            <h3 class="text-xs sm:text-sm font-semibold text-white truncate" title="${escapeHtml(app.title)}">${escapeHtml(app.title)}</h3>
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                            <h3 class="text-xs sm:text-sm font-semibold text-white truncate">${app.title}</h3>
                         </div>
                         <div class="flex items-center gap-1 shrink-0">
-                            <button onclick="refreshSingleIframe('${app.id}')" class="p-1.5 text-gray-400 hover:text-white rounded hover:bg-gray-800 transition-colors" title="Refresh Stream">
-                                <i class="fa-solid fa-rotate text-xs"></i>
-                            </button>
-                            <button onclick="openFullscreenModal('${escapeHtml(app.title)}', '${escapeHtml(app.url)}')" class="p-1.5 text-gray-400 hover:text-white rounded hover:bg-gray-800 transition-colors" title="Expand Fullscreen">
-                                <i class="fa-solid fa-expand text-xs"></i>
-                            </button>
-                            <a href="${escapeHtml(app.url)}" target="_blank" rel="noopener noreferrer" class="p-1.5 text-gray-400 hover:text-brand-400 rounded hover:bg-gray-800 transition-colors" title="Open in New Tab">
-                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                            </a>
+                            <button onclick="refreshSingleIframe('${app.id}')" class="p-1.5 text-gray-400 hover:text-white rounded"><i class="fa-solid fa-rotate text-xs"></i></button>
+                            <button onclick="openFullscreenModal('${app.title}', '${app.url}')" class="p-1.5 text-gray-400 hover:text-white rounded"><i class="fa-solid fa-expand text-xs"></i></button>
+                            <button onclick="deleteApp('${app.id}')" class="p-1.5 text-gray-400 hover:text-red-400 rounded"><i class="fa-solid fa-trash text-xs"></i></button>
                         </div>
                     </div>
-
-                    <!-- Live Stream Viewport Container -->
-                    <div class="relative w-full h-60 bg-black overflow-hidden group">
-                        <!-- Loading Overlay -->
-                        <div id="loader-${app.id}" class="absolute inset-0 z-10 bg-darkcard/90 flex flex-col items-center justify-center gap-2 transition-opacity">
-                            <i class="fa-solid fa-circle-notch animate-spin text-brand-500 text-2xl"></i>
-                            <span class="text-xs text-gray-400 font-medium">Connecting live stream...</span>
-                        </div>
-
-                        <!-- Iframe Embed Viewport -->
-                        <iframe 
-                            id="iframe-${app.id}"
-                            src="${escapeHtml(app.url)}" 
-                            onload="handleIframeLoad('${app.id}')"
-                            title="${escapeHtml(app.title)}"
-                            class="w-full h-full border-0 bg-white"
-                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                            loading="lazy">
-                        </iframe>
-                    </div>
-
-                    <!-- Footer Link Box & Control Toolbar -->
-                    <div class="p-3 bg-gray-900/40 border-t border-gray-800 flex flex-col gap-2">
-                        <div class="flex items-center gap-2 bg-gray-900 px-2.5 py-1.5 rounded-lg border border-gray-800">
-                            <i class="fa-solid fa-link text-gray-500 text-xs"></i>
-                            <input type="text" readonly value="${escapeHtml(app.url)}" class="bg-transparent text-[11px] font-mono text-gray-300 w-full focus:outline-none select-all truncate">
-                        </div>
-
-                        <div class="flex items-center justify-between pt-1">
-                            <span class="text-[10px] text-gray-500"><i class="fa-solid fa-clock text-[9px] mr-1"></i> Auto-refreshes 60s</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="openEditModal('${app.id}')" class="text-xs text-gray-400 hover:text-white px-2 py-1 rounded hover:bg-gray-800 transition-colors">
-                                    <i class="fa-solid fa-pen text-[10px] mr-1"></i> Edit
-                                </button>
-                                <button onclick="deleteApp('${app.id}')" class="text-xs text-red-400 hover:text-red-300 px-2 py-1 rounded hover:bg-red-500/10 transition-colors">
-                                    <i class="fa-solid fa-trash-can text-[10px] mr-1"></i> Delete
-                                </button>
-                            </div>
-                        </div>
+                    <div class="relative w-full h-60 bg-black overflow-hidden">
+                        <iframe id="iframe-${app.id}" src="${app.url}" class="w-full h-full border-0 bg-white" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
                     </div>
                 `;
-
                 grid.appendChild(card);
             });
         }
 
-        // Add Stream Logic
-        function openAddModal() {
-            if (apps.length >= MAX_APPS) {
-                showToast(`Maximum limit of ${MAX_APPS} apps reached! Please delete an app before adding new ones.`, 'warning');
-                return;
-            }
-            const modal = document.getElementById('add-modal');
-            const content = document.getElementById('add-modal-content');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                content.classList.remove('scale-95', 'opacity-0');
-                content.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
-
-        function closeAddModal() {
-            const modal = document.getElementById('add-modal');
-            const content = document.getElementById('add-modal-content');
-            content.classList.remove('scale-100', 'opacity-100');
-            content.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.getElementById('input-title').value = '';
-                document.getElementById('input-url').value = '';
-            }, 150);
-        }
+        function openAddModal() { document.getElementById('add-modal').classList.remove('hidden'); }
+        function closeAddModal() { document.getElementById('add-modal').classList.add('hidden'); }
 
         function handleAddApp(e) {
             e.preventDefault();
-            if (apps.length >= MAX_APPS) {
-                showToast(`Maximum limit of ${MAX_APPS} apps reached.`, 'error');
-                return;
-            }
-
-            const title = document.getElementById('input-title').value.trim();
-            let url = document.getElementById('input-url').value.trim();
-
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                url = 'https://' + url;
-            }
-
-            const newApp = {
-                id: Date.now().toString(),
-                title: title || 'App Stream',
-                url: url
-            };
-
-            apps.unshift(newApp);
+            const title = document.getElementById('input-title').value;
+            const url = document.getElementById('input-url').value;
+            apps.push({ id: Date.now().toString(), title, url });
             saveAppsToStorage();
             renderAppGrid();
             closeAddModal();
-            showToast(`Added stream "${title}" successfully.`, 'success');
         }
 
-        // Edit Stream Logic
-        function openEditModal(id) {
-            const app = apps.find(a => a.id === id);
-            if (!app) return;
-
-            document.getElementById('edit-app-id').value = app.id;
-            document.getElementById('edit-title').value = app.title;
-            document.getElementById('edit-url').value = app.url;
-
-            document.getElementById('edit-modal').classList.remove('hidden');
-        }
-
-        function closeEditModal() {
-            document.getElementById('edit-modal').classList.add('hidden');
-        }
-
-        function handleEditApp(e) {
-            e.preventDefault();
-            const id = document.getElementById('edit-app-id').value;
-            const title = document.getElementById('edit-title').value.trim();
-            let url = document.getElementById('edit-url').value.trim();
-
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                url = 'https://' + url;
-            }
-
-            const index = apps.findIndex(a => a.id === id);
-            if (index !== -1) {
-                apps[index].title = title;
-                apps[index].url = url;
-                saveAppsToStorage();
-                renderAppGrid();
-                closeEditModal();
-                showToast(`Updated stream "${title}".`, 'success');
-            }
-        }
-
-        // Delete Stream Logic
         function deleteApp(id) {
-            const app = apps.find(a => a.id === id);
-            const appName = app ? app.title : 'Stream';
-
-            if (confirm(`Are you sure you want to remove the monitor for "${appName}"?`)) {
-                apps = apps.filter(a => a.id !== id);
-                saveAppsToStorage();
-                renderAppGrid();
-                showToast(`Removed "${appName}" from dashboard.`, 'info');
-            }
+            apps = apps.filter(a => a.id !== id);
+            saveAppsToStorage();
+            renderAppGrid();
         }
 
-        // Filter / Search Apps
-        function filterApps() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const filtered = apps.filter(app => 
-                app.title.toLowerCase().includes(query) || 
-                app.url.toLowerCase().includes(query)
-            );
-            renderAppGrid(filtered);
-        }
-
-        // Toggle Grid Layout
-        function layoutToggle() {
-            const grid = document.getElementById('apps-grid');
-            isThreeColumn = !isThreeColumn;
-            
-            if (isThreeColumn) {
-                grid.className = "grid grid-cols-1 md:grid-cols-3 gap-4";
-                showToast('Switched to compact grid view', 'info');
-            } else {
-                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-6";
-                showToast('Switched to standard grid view', 'info');
-            }
-        }
-
-        // Fullscreen Modal
         function openFullscreenModal(title, url) {
             document.getElementById('fullscreen-title').innerText = title;
-            document.getElementById('fullscreen-url').innerText = url;
             document.getElementById('fullscreen-iframe').src = url;
             document.getElementById('fullscreen-modal').classList.remove('hidden');
-        }
-
-        function refreshFullscreenIframe() {
-            const iframe = document.getElementById('fullscreen-iframe');
-            const src = iframe.src;
-            iframe.src = 'about:blank';
-            setTimeout(() => { iframe.src = src; }, 100);
         }
 
         function closeFullscreenModal() {
@@ -736,140 +449,28 @@
             document.getElementById('fullscreen-iframe').src = 'about:blank';
         }
 
-        // Policy & Legal Pages Render Engine (Google AdSense Mandatory Pages)
-        function openPolicyModal(page) {
-            const titleEl = document.getElementById('policy-modal-title');
-            const contentEl = document.getElementById('policy-modal-content');
+        function openPolicyModal(type) {
+            const modal = document.getElementById('policy-modal');
+            const title = document.getElementById('policy-modal-title');
+            const content = document.getElementById('policy-modal-content');
+            modal.classList.remove('hidden');
 
-            if (page === 'privacy') {
-                titleEl.innerHTML = `<i class="fa-solid fa-user-shield text-brand-500"></i> Privacy Policy`;
-                contentEl.innerHTML = `
-                    <p class="text-xs text-gray-400">Last updated: October 2026</p>
-                    <h4 class="font-semibold text-white text-base">1. Information Collection and Storage</h4>
-                    <p>AppStream Monitor values your privacy. We do not store your monitored application credentials or personal data on external servers. All custom stream titles and URLs added to your monitoring workspace are stored exclusively within your local web browser using <code>LocalStorage</code>.</p>
-                    
-                    <h4 class="font-semibold text-white text-base">2. Google AdSense & Third-Party Advertising Disclosures</h4>
-                    <p>This website utilizes <strong>Google AdSense</strong> to display advertisements. Google uses cookies (including the DoubleClick DART cookie) to serve ads to users based on their visit to this website and other websites on the Internet.</p>
-                    <ul class="list-disc list-inside space-y-1 pl-2">
-                        <li>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to your website or other websites.</li>
-                        <li>Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.</li>
-                        <li>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" class="text-brand-400 underline">Google Ads Settings</a>.</li>
-                    </ul>
-
-                    <h4 class="font-semibold text-white text-base">3. Log Files & Analytics</h4>
-                    <p>Like standard web platforms, standard browser logs may be generated for operational diagnostics. These logs include Internet Protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamps, and referring pages.</p>
-                `;
-            } else if (page === 'terms') {
-                titleEl.innerHTML = `<i class="fa-solid fa-file-contract text-brand-500"></i> Terms of Service`;
-                contentEl.innerHTML = `
-                    <p class="text-xs text-gray-400">Last updated: October 2026</p>
-                    <h4 class="font-semibold text-white text-base">1. Acceptance of Terms</h4>
-                    <p>By accessing and using AppStream Monitor, you agree to comply with and be bound by these Terms of Service and all applicable web regulations.</p>
-
-                    <h4 class="font-semibold text-white text-base">2. Acceptable Use Policy</h4>
-                    <p>Users are solely responsible for all URLs and app streams added to their personal monitoring dashboard. You agree not to embed or monitor content that:</p>
-                    <ul class="list-disc list-inside space-y-1 pl-2">
-                        <li>Violates copyright, trademark, or intellectual property laws.</li>
-                        <li>Contains malicious scripts, phishing attempts, or malware.</li>
-                        <li>Breaches third-party terms of service or Google AdSense content policies.</li>
-                    </ul>
-
-                    <h4 class="font-semibold text-white text-base">3. Disclaimer of Warranties & Iframe Embedding</h4>
-                    <p>AppStream Monitor acts as an visual aggregation browser client. We do not host third-party websites or guarantee that third-party servers allow embedding via standard iframe headers (such as <code>X-Frame-Options</code> or Content Security Policies).</p>
-                `;
-            } else if (page === 'about') {
-                titleEl.innerHTML = `<i class="fa-solid fa-circle-info text-brand-500"></i> About AppStream Monitor`;
-                contentEl.innerHTML = `
-                    <h4 class="font-semibold text-white text-base">The Developer & Webmaster Command Center</h4>
-                    <p><strong>AppStream Monitor</strong> is a web application monitoring dashboard designed for developers, cloud operators, and digital creators who manage multiple web applications simultaneously.</p>
-                    
-                    <h4 class="font-semibold text-white text-base">Key Capabilities</h4>
-                    <ul class="list-disc list-inside space-y-1.5 pl-2">
-                        <li><strong>Multi-App Visibility:</strong> Display up to 50 simultaneous app preview cards in a unified workspace.</li>
-                        <li><strong>60-Second Auto-Heartbeat:</strong> Automated iframe reloads keep status logs up to date without manual browser tab refreshing.</li>
-                        <li><strong>Privacy First:</strong> No backend tracking or forced account registration. Dashboard layout persists directly in client LocalStorage.</li>
-                        <li><strong>AdSense Optimized:</strong> Designed with clean UI spaces and standards compliance for digital publishing.</li>
-                    </ul>
-                `;
-            } else if (page === 'contact') {
-                titleEl.innerHTML = `<i class="fa-solid fa-envelope text-brand-500"></i> Contact Us`;
-                contentEl.innerHTML = `
-                    <p>Have questions, feature suggestions, or feedback regarding AppStream Monitor? Reach out to our technical support team below.</p>
-                    
-                    <form onsubmit="handleContactSubmit(event)" class="space-y-3 mt-4">
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1">Your Name</label>
-                            <input type="text" required placeholder="John Doe" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1">Email Address</label>
-                            <input type="email" required placeholder="support@example.com" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1">Message</label>
-                            <textarea rows="3" required placeholder="How can we help you?" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500"></textarea>
-                        </div>
-                        <button type="submit" class="bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold px-4 py-2 rounded-lg w-full">Send Message</button>
-                    </form>
-                `;
+            if (type === 'privacy') {
+                title.innerText = 'Privacy Policy';
+                content.innerHTML = '<p>AppStream Monitor respects user privacy. No monitored app stream contents or target URLs are logged or sold to third parties.</p><p>We use Google AdSense to serve ads. Third-party vendors use cookies to serve personalized ads based on web activity.</p>';
+            } else if (type === 'terms') {
+                title.innerText = 'Terms of Service';
+                content.innerHTML = '<p>AppStream Monitor provides a local browser iframe monitoring interface. Users must ensure they have authorization to monitor target web applications.</p>';
+            } else if (type === 'about') {
+                title.innerText = 'About Us';
+                content.innerHTML = '<p>AppStream Monitor is a productivity dashboard designed for web developers, DevOps engineers, and digital webmasters needing live preview monitors for web apps.</p>';
+            } else if (type === 'contact') {
+                title.innerText = 'Contact Support';
+                content.innerHTML = '<p>For publisher or technical support inquiries, contact us at <strong>support@appstreammonitor.com</strong>.</p>';
             }
-
-            document.getElementById('policy-modal').classList.remove('hidden');
         }
 
-        function closePolicyModal() {
-            document.getElementById('policy-modal').classList.add('hidden');
-        }
-
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            closePolicyModal();
-            showToast('Thank you! Your message has been sent to our support team.', 'success');
-        }
-
-        // Toast Notification System Helper
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            
-            let bgClass = "bg-gray-900 border-gray-700 text-gray-200";
-            let icon = "fa-info-circle text-brand-500";
-
-            if (type === 'success') {
-                bgClass = "bg-gray-900 border-emerald-500/50 text-emerald-300";
-                icon = "fa-check-circle text-emerald-500";
-            } else if (type === 'error') {
-                bgClass = "bg-gray-900 border-red-500/50 text-red-300";
-                icon = "fa-exclamation-circle text-red-500";
-            } else if (type === 'warning') {
-                bgClass = "bg-gray-900 border-amber-500/50 text-amber-300";
-                icon = "fa-triangle-exclamation text-amber-500";
-            }
-
-            toast.className = `pointer-events-auto flex items-center gap-3 border ${bgClass} px-4 py-3 rounded-xl shadow-2xl text-xs font-medium transition-all duration-300 transform translate-y-2 opacity-0`;
-            toast.innerHTML = `<i class="fa-solid ${icon} text-base"></i> <span>${escapeHtml(message)}</span>`;
-
-            container.appendChild(toast);
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 10);
-
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() => toast.remove(), 300);
-            }, 3500);
-        }
-
-        // Helper string sanitizer
-        function escapeHtml(str) {
-            return String(str)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
+        function closePolicyModal() { document.getElementById('policy-modal').classList.add('hidden'); }
     </script>
 </body>
 </html>
