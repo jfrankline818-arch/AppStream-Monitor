@@ -134,7 +134,7 @@
         </div>
     </header>
 
-    <!-- AD UNIT #1: TOP LEADERBOARD BANNER -->
+    <!-- AD SLOT #1: TOP LEADERBOARD BANNER -->
     <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-4">
         <div class="adsense-container border border-gray-800 rounded-xl p-3 flex flex-col items-center justify-center min-h-[90px] relative overflow-hidden">
             <ins class="adsbygoogle"
@@ -170,10 +170,10 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <!-- App Stream Grid -->
-            <div class="lg:col-span-3">
+            <!-- App Stream Grid Area -->
+            <div class="lg:col-span-3 space-y-8">
                 <div id="apps-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Dynamic App Cards -->
+                    <!-- Dynamic App Cards rendered here -->
                 </div>
 
                 <!-- Empty State -->
@@ -187,12 +187,27 @@
                         <i class="fa-solid fa-plus mr-1.5"></i> Add First App Stream
                     </button>
                 </div>
+
+                <!-- AD SLOT #4: MID-PAGE IN-FEED / NATIVE BANNER -->
+                <div class="w-full adsense-container border border-gray-800 rounded-2xl p-4 text-center shadow-sm">
+                    <div class="min-h-[120px] flex items-center justify-center text-xs text-gray-400">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-4321543724878495"
+                             data-ad-slot="6677889900"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
             </div>
 
             <!-- Sidebar Column -->
             <aside class="lg:col-span-1 space-y-6">
                 
-                <!-- Ad Box 1: Medium Rectangle -->
+                <!-- AD SLOT #2: SIDEBAR MEDIUM RECTANGLE (300x250) -->
                 <div class="adsense-container border border-gray-800 rounded-xl p-3 flex flex-col items-center justify-center min-h-[260px] relative overflow-hidden">
                     <ins class="adsbygoogle"
                          style="display:inline-block;width:300px;height:250px"
@@ -215,7 +230,7 @@
                     </ul>
                 </div>
 
-                <!-- Ad Box 2: Vertical Responsive Slot -->
+                <!-- AD SLOT #3: SIDEBAR VERTICAL / RESPONSIVE SLOT -->
                 <div class="adsense-container border border-gray-800 rounded-xl p-3 flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden">
                     <ins class="adsbygoogle"
                          style="display:block"
@@ -417,6 +432,12 @@
                 `;
                 grid.appendChild(card);
             });
+        }
+
+        function filterApps() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = apps.filter(a => a.title.toLowerCase().includes(query) || a.url.toLowerCase().includes(query));
+            renderAppGrid(filtered);
         }
 
         function openAddModal() { document.getElementById('add-modal').classList.remove('hidden'); }
